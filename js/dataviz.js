@@ -92,7 +92,7 @@ d3.tsv("data/viplist.tsv", function(error, data) {//reads the viplist.tsv file
 						.attr("x", function() { return (randomvar == 0) ? 40 : 0;})
 						.attr("y", function() { return (randomvar == 0) ? 40 : height + 40;});
 				} else {
-						svg.select('.persontable').append('text').text(d.people + " ("+ d.entidad+")").attr("class","vipname")
+						svg.select('.persontable').append('text').text(d.people + " ("+ d.entidad+") "+ d.importe + "€").attr("class","vipname")
 						.attr("x", function(d) { return randomvar == 0 ? 40 : 0;})
 						.attr("y", function(d) { return randomvar == 0 ? 40 : height + 40;});
 				}
