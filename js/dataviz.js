@@ -35,8 +35,8 @@ var svg = d3.select('#vis').append("svg")
 
 //Sets xScale
 // define the x scale (horizontal)
-var mindate = new Date(2003,3,1),
-    maxdate = new Date(2012,6,1);
+//var mindate = new Date(2003,3,1), //TODO need to define this??
+//    maxdate = new Date(2012,6,1);
 var xScale = d3.time.scale()
     //.domain([mindate, maxdate])    // values between for month of january
     .range([0, width]);   // map these the the chart width = total width minus padding at both sides
