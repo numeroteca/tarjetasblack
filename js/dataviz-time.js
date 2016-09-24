@@ -44,13 +44,13 @@ var xScale = d3.time.scale()
 //var parseDate = d3.time.format("%m-%d-%Y").parse;
 var parseDate = d3.time.format("%H:%M:%S").parse;
 
-
 // define the x axis
 var xAxis = d3.svg.axis()
     .orient("bottom")
     .scale(xScale)
-    .ticks(d3.time.minute, 15);
-    
+    .ticks(d3.time.minutes, 60)
+		.tickFormat(d3.time.format("%H:%M"));
+
 //Random variable
 var randomvar = 0;
 
@@ -191,7 +191,7 @@ d3.tsv("data/data.tsv", type, function(error, data) {//reads the data.tsv file
 	//The tooltips time scale
 		.on("mouseover", function(d) {
 				div.transition().style("opacity", 1);
-				div.html( d.hora.getHours() + ":" + d.hora.getMinutes() + ":" + d.hora.getSeconds() + "<br/>" + /* d.date.getFullYear() + '-' + (d.date.getMonth()+1) + '-' + d.date.getDate() + */ "<br/><strong/>"  + d.quien + "</strong/><br/>"  + formatComma(d.importe) + "€ <br/>"  + d.actividad + "<br/>"  + d.comercio + "<br/>"  + d.operacion)
+				div.html( d.hora.getHours() + ":" + d.hora.getMinutes() + ":" + d.hora.getSeconds() + "<br/>" + d.date + "<br/><strong/>"  + d.quien + "</strong/><br/>"  + formatComma(d.importe) + "€ <br/>"  + d.actividad + "<br/>"  + d.comercio + "<br/>"  + d.operacion)
 					.style("left", (d3.event.pageX + 1) + "px")
 					.style("top", (d3.event.pageY - 120) + "px");
 			})
