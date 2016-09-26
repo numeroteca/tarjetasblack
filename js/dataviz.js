@@ -204,6 +204,7 @@ d3.tsv("data/data.tsv", type, function(error, data) {//reads the data.tsv file
 	legendcosas.append("div").attr("class","inactive btn btn-default btn-xs pull-right")
 		.text("Posición vertical aleatoria")
 		.attr("title","Posiciona las barras que representan los gastos aleatoriamente, manteniendo la posición por fecha")
+		.attr("id","random")
 		.on('click',function(d) {
 			if (randomvar == 0) {
 				randomvar = 1;
