@@ -5,21 +5,43 @@ Tooltip based on http://www.d3noob.org/2013/01/adding-tooltips-to-d3js-graph.htm
 Also some ideas come from https://github.com/erhardt/Attention-Plotter
 */
 
+// D3 locale
+var es_ES = {
+    "decimal": ",",
+    "thousands": ".",
+    "grouping": [3],
+    "currency": ["€", ""],
+    "dateTime": "%a %b %e %X %Y",
+    "date": "%d/%m/%Y",
+    "time": "%H:%M:%S",
+    "periods": ["AM", "PM"],
+    "days": ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+    "shortDays": ["Dom", "Lun", "Mar", "Mi", "Jue", "Vie", "Sab"],
+    "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+    "shortMonths": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+}
+
+// Select the vis div
+var vis = d3.select('#vis')
+
 var barwidth = 1.98; //width of the bars
 
 //Prepare canvas size
 var margin = {top: 15, right: 20, bottom: 70, left: 65},
-    width = 1300 - margin.left - margin.right,
+    width = vis.node().clientWidth - margin.left - margin.right,
     height = 550 - margin.top - margin.bottom;
-var	topvalue = 10000,
-		activeopacity = 0.8;
 
-var formatComma = d3.format(".0f");
+var	topvalue = 10000,
+	activeopacity = 0.8;
+
+// Formatting values
+var ES = d3.locale(es_ES),
+	formatThousand =  ES.numberFormat("n")
 
 //Sets yScale
 var yValue = function(d) { return d.SaldoCalculado; }, // data -> value
     yScale = d3.scale.linear().range([height, 0]), // fuction that converts the data values into display values: value -> display
-    yAxis =  d3.svg.axis().scale(yScale).orient("left").tickFormat(formatComma);
+    yAxis =  d3.svg.axis().scale(yScale).orient("left").tickFormat(formatThousand);
 
 //Adds the div that is used for the tooltip
 var div = d3.select("body").append("div")   
@@ -190,7 +212,7 @@ d3.tsv("data/data.tsv", type, function(error, data) {//reads the data.tsv file
 	//The tooltips time scale
 		.on("mouseover", function(d) {
 				div.transition().style("opacity", 1);
-				div.html(d.date.getFullYear() + '-' + (d.date.getMonth()+1) + '-' + d.date.getDate() + "<br/><strong/>"  + d.quien + "</strong/><br/>"  + formatComma(d.importe) + "€ <br/>"  + d.actividad + "<br/>"  + d.comercio + "<br/>"  + d.operacion)
+				div.html(d.date.getFullYear() + '-' + (d.date.getMonth()+1) + '-' + d.date.getDate() + "<br/><strong/>"  + d.quien + "</strong/><br/>"  + formatThousand(d.importe) + "€ <br/>"  + d.actividad + "<br/>"  + d.comercio + "<br/>"  + d.operacion)
 					.style("left", (d3.event.pageX + 1) + "px")
 					.style("top", (d3.event.pageY - 120) + "px");
 			})
