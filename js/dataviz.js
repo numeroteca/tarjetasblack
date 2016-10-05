@@ -176,7 +176,7 @@ d3.tsv("data/data.tsv", type, function(error, data) {//reads the data.tsv file
 	barstimescale.selectAll(".bar")
 		.data(data)
 		.enter().append("rect")
-		.attr("fill", function(d) { return d.importe < 0 ? "#339900" : "#336600"; })
+		.attr("fill", "#666") //las barras por defecto en gris
 		.style("opacity",0.4)
 		.attr("class",
 			function(d) {

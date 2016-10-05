@@ -102,6 +102,11 @@ line.topline:hover {
 	font-size:12px;
 }
 
+#compra {
+	fill: #bbb;
+	background-color: #bbb;
+}
+
 .cajero, #cajero {
 	fill: #66CC00;
 	background-color: #66CC00;
@@ -166,4 +171,10 @@ mark {
 
 #random {
 	background: #febaad;
+}
+
+.btn-success {
+	color: #fff;
+	background-color: #aaa !important;
+	border-color: #888 !important;
 }
